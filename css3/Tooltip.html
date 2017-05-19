@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Tooltip</title>
+	<link rel="stylesheet" href="">
+	<style>
+	.tooltip span:first-child
+	{
+		color: red;
+		background-color: green;
+		font-size: 22px;
+
+		/*定位*/
+		position: relative;
+	}
+	.tip-content
+	{
+		display: none;
+	}
+	.tooltip:hover .tip-content
+	{
+		display: block;
+		background-color: black;
+		color: white;
+		font-size: 20px;
+		text-align: center;
+		height: 30px;
+		border-radius: 6px;
+		/*定位*/
+		position: absolute;
+		z-index: 1;
+		left: 45px;
+	}
+	</style>
+</head>
+<body>
+<div class="tooltip">
+	<span>鼠标移动到这里</span>
+	<span class="tip-content">提示内容</span>
+</div>
+</body>
+</html>

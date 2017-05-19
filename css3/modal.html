@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>modal</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+	.pic
+	{
+		width: 300px;
+	}
+	img
+	{
+		display: block;
+		width: 100%;
+	}
+	.pic:hover
+	{
+		box-shadow: 2px 0 5px 5px #ccc;
+		opacity: 0.6;
+	}
+	/*设置modal窗口*/
+	.modal
+	{
+		display: none;
+		height: 80%;
+		width: 80%;
+		position: fixed;
+		left: 10%;
+		top: 10%;
+		z-index: 1;
+	}
+	/*caption窗口*/
+	#caption
+	{
+		text-align: center;
+		font-size: 24px;
+		padding: 45px;
+	}
+	/*动画效果*/
+	@keyframes mv
+	{
+		from{transform: rotate(0deg)}
+		to{transform: rotate(360deg)}
+	}
+
+	@-webkit-keyframes mv
+	{
+		from{-webkit-transform: rotate(0deg)}
+		to{-webkit-transform: rotate(360deg)}
+	}
+
+	.modal-content,#caption
+	{
+		-webkit-animation: mv 2s;
+		animation: mv 2s;
+	}
+	/*关闭按钮*/
+	#close
+	{
+		color: red;
+		position: absolute;
+		right: 10px;
+		top: 10px;
+	}
+	#close:hover
+	{
+		text-shadow: 3px 3px 2px 3px #ccc;
+		cursor: pointer;
+	}
+	</style>
+</head>
+<body>
+<p>点击图片显示modal</p>
+<div class="pic">
+	<img id="myimg" src="demo.jpg" alt="图片相关信息" />
+</div>
+
+<!-- modal -->
+<div id="mymodal" class="modal">
+	<span id="close">关闭</span>
+	<img class="modal-content" id="img01">
+	<div id="caption"></div>
+</div>
+
+<script>
+//获取modal窗口相关信息
+var modal = document.getElementById("mymodal");
+var img = document.getElementById("myimg");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+
+//点击效果，alt属性作为弹出框中文本描述
+img.onclick = function(){
+	modal.style.display = "block";
+	modalImg.src = this.src;
+	modalImg.alt = this.alt;
+	captionText.innerHTML = this.alt;
+}
+
+//设置右上角关闭按钮
+var close = document.getElementById("close");
+
+//点击按钮关闭,关闭窗口
+close.onclick = function(){
+	modal.style.display = "none";
+}
+</script>
+</body>
+</html>

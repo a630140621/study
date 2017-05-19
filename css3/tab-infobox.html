@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>tab-infobox</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+	/*初始化*/
+	*
+	{
+		box-sizing: border-box;
+	}
+	ul,li
+	{
+		margin: 0;
+		padding: 0;
+	}
+	.container
+	{
+		width: 230px;
+		text-align: center;
+	}
+	/*tab index 部分*/
+	.tab_index
+	{
+		
+	}
+	.tab_index li
+	{
+		list-style-type: none;
+	}
+	.tab_index li a
+	{
+		text-decoration: none;
+		color: black;
+		font-size: 24px;
+		display: block;
+		float: left;
+		padding: 10px;
+		background-color: red;
+	}
+	.tab_index ul li a.active
+	{
+		background-color: lightblue;
+	}
+	.tab
+	{
+		background-color: lightblue;
+	}
+	.tab1,.tab2,.tab3{visibility: hidden;}
+	</style>
+</head>
+<body>
+<section class="container">
+	<!-- tab index -->
+	<div class="tab_index">
+		<ul>
+			<li><a id="a1" href="#" title="" class="active">Tab1</a></li>
+			<li><a id="a2" href="#" title="">Tab2</a></li>
+			<li><a id="a3" href="#" title="">Tab3</a></li>
+		</ul>
+	</div>
+
+	<!-- tab content -->
+	<div class="tab">
+		<div class="tab1">
+			<h2>The first tab</h2>
+			<p>这是第一模块</p>
+		</div>
+		<div class="tab2">
+			<h2>The second tab</h2>
+			<p>这是第二模块</p>
+		</div>
+		<div class="tab3">
+			<h2>The third tab</h2>
+			<p>这是第三模块</p>
+		</div>
+	</div>
+</section>
+<script>
+// 获取tab
+var tab1 = document.getElementsByClassName("tab1");
+var tab2 = document.getElementsByClassName("tab2");
+var tab3 = document.getElementsByClassName("tab3");
+
+var a1 = document.getElementById("a1");
+var a2 = document.getElementById("a2");
+var a3 = document.getElementById("a3");
+
+tab1.onclick = function()
+{
+	a1.style.class = "active";
+}
+tab2.onclick = function()
+{
+	a2.style.class = "active";
+}
+tab3.onclick = function()
+{
+	a3.style.class = "active";
+}
+</script>
+</body>
+</html>

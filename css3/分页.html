@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>分页</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css">
+	/*定位*/
+	.container
+	{
+			position: absolute;
+			left: 30%;
+			bottom: 10%;	
+	}
+	.container a
+	{
+		display: block;
+		float: left;
+		padding: 15px;
+		text-decoration: none;
+		border-radius: 8px;
+		border: 1px solid #ccc;
+		margin: 5px;
+	}
+	.container a:nth-child(4)
+	{
+		background-color: red;
+	}
+	.container a:hover:not(.a)
+	{
+		background-color: #ccc;
+		opacity: 0.8;
+	}
+/*	.center
+	{
+		text-align: center;
+	}*/
+	</style>
+</head>
+<body>
+<div class="center">
+<div class="container">
+	<a href="#"><<</a>
+	<a href="#">1</a>
+	<a href="#">2</a>
+	<a href="#" class="a">3</a>
+	<a href="#">4</a>
+	<a href="#">5</a>
+	<a href="#">6</a>
+	<a href="#">7</a>
+	<a href="#">>></a>
+</div>
+</div>
+</body>
+</html>

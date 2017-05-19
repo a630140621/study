@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget id="A6948998265453" version="0.0.1"> 
+  <name>校园学术讲座信息发布</name>  
+  <description>毕业设计</description>  
+  <author email="1036613760@qq.com" href="http://www.apicloud.com">jiubujian</author>  
+  <content src="index.html"/>  
+  <preference name="appBackground" value="rgba(0,0,0,0)"/>  
+  <preference name="windowBackground" value="rgba(0,0,0,0)"/>  
+  <preference name="frameBackgroundColor" value="rgba(0,0,0,0)"/>  
+  <preference name="autoLaunch" value="true"/>  
+  <preference name="autoUpdate" value="true"/>  
+  <preference name="smartUpdate" value="false"/>  
+  <preference name="debug" value="true"/>  
+  <preference name="statusBarAppearance" value="true"/>  
+  <permission name="location"/>  
+  <permission name="internet"/>  
+  <access origin="*"/>  
+  <feature name="bMap"> 
+    <param name="android_api_key" value="Tf0XQbzTWU3I2VjLcStoo3Yo6ewDloKl"/> 
+  </feature> 
+</widget>

@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>fixedPane</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css"/>
+		<style>
+			html {
+				/*background-color: #ccc;*/
+				background-image: url(../image/ndmz.jpg);
+			}
+			ul {
+				margin-top: 130px;
+				margin-left: 5px;
+			}
+			li {
+				padding: 3px 10px;
+				/*border-bottom: 1px solid #d4d3d3;*/
+			}
+			/*        .liActive
+			 {
+			 background-color: #3ABA63;
+			 }*/
+			li a {
+				display: block;
+				padding: 10px 30px;
+			}
+			div {
+				height: 20px;
+				width: 20px;
+				/*background-color: red;*/
+				margin-left: 5px;
+				padding-top: 11px;
+				float: left;
+			}
+			ul img {
+				display: block;
+				height: 20px;
+				width: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<nav>
+			<div id="default"><img src="../image/default.png" alt="" />
+			</div>
+			<ul>
+				<li tapmode="liActive" onclick="close_Slide()">
+					<div><img src="../image/home.svg" alt="">
+					</div><a class="home">首页</a>
+				</li>
+				<li tapmode="liActive" onclick="">
+					<div><img src="../image/favorite.svg" alt="">
+					</div><a class="nav1">收藏</a>
+				</li>
+				<!--<li tapmode="liActive" onclick=""><a class="nav2">通知</a></li>-->
+				<li tapmode="liActive" onclick="open_Calender()">
+					<div><img src="../image/calendar.svg" alt="">
+					</div><a class="nav2">学术日历</a>
+				</li>
+			</ul>
+		</nav>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script>
+		apiready = function() {
+			api.setStatusBarStyle({
+				style : 'light',
+				color : '#000'
+			});
+			$api.fixStatusBar($api.dom('nav'));
+		};
+		function open_Calender() {
+			api.openWin({
+				name : 'Calender',
+				url : 'Calender.html',
+				rect : {
+					x : 0,
+					y : 0,
+					w : 'auto',
+					h : 'auto'
+				}
+			});
+		}
+
+		function close_Slide() {
+			api.closeSlidPane();
+		}
+	</script>
+</html>

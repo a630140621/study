@@ -1,0 +1,181 @@
+﻿<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=0, width=device-width"/>
+		<title>api</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css" />
+		<link rel="stylesheet" type="text/css" href="../css/common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/activity.css" />
+		<link rel="stylesheet" type="text/css" href="./css/index.css" />
+	</head>
+	<body>
+	
+		<div id="main">
+		<div id="header">
+				<div class="activity">
+					<ul class="submenu" id="submenu">
+						<li>
+							<a tapmode="" onclick="searchAct(this,'city')" class="city"><i></i><span>学院</span></a>
+						</li>
+						<li>
+							<a tapmode="" onclick="searchAct(this,'type')" class="hot"><i></i><span>日期</span></a>
+						</li>
+						<li>
+							<a tapmode="" onclick="searchAct(this,'type')" class="hot"><i></i><span>学科</span></a>
+						</li>
+						<li>
+							<a tapmode="" onclick="searchAct(this,'type')" class="hot"><i></i><span>过去</span></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<script id="banner-template" type="text/x-dot-template">
+				{{ for(var i=0; i < it.length; i++) { }}
+				<div>
+				<img src="{{=it[i].img.url}}" />
+				<label><div class="blur"></div>{{=it[i].title}}</label>
+				</div>
+				{{ } }}
+			</script>
+			<div id='slide' class='swipe'>
+				<div class='swipe-wrap' id="banner-content"></div>
+				<ul id="pointer">
+					<li>
+						<a class="active"></a>
+					</li>
+					<li>
+						<a></a>
+					</li>
+					<li>
+						<a></a>
+					</li>
+				</ul>
+			</div>
+			
+			<div id="activity">
+				<script id="act-template" type="text/x-dot-template">
+					{{ for(var i=0; i < it.length; i++) { }}
+					<div class="item">
+					<a tapmode="" onclick="openActDetail('{{=it[i].id}}');">
+					<div class="pic" style="background-image:url({{=it[i].img.url}})">
+					</div>
+					<h2>{{=it[i].title}}</h2>
+					<p>
+					{{=it[i].summary}}
+					</p>
+					</a>
+					</div>
+					{{ } }}
+				</script>
+				<div id="act-content"></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script src='../script/swipe.js'></script>
+	<script type="text/javascript" src="../script/doT.min.js"></script>
+	<script type="text/javascript" src="../script/common.js"></script>
+	<script type="text/javascript" src="../script/activity.js"></script>
+	<script >
+		var searchActOpened = false;
+//		function changeCityTab(str) {
+//			if (str) {
+//				var title = $api.dom('#header .activity .city span');
+//				$api.text(title, str);
+//			}
+//		}
+
+//		function changeTypeTab(str) {
+//			if (str) {
+//				var title = $api.dom('#header .activity .hot span');
+//				$api.text(title, str);
+//			}
+//		}
+
+//		function closeFramGroup() {
+//			api.closeFrameGroup({
+//				name : 'searchAct'
+//			});
+//			var actLi = $api.dom('#header .activity li.active');
+//			$api.removeCls(actLi, 'active');
+//			searchActOpened = false;
+//		}
+
+		//search activity
+		function searchAct(el, type) {
+			if (!el || !type) {
+				return;
+			}
+			var header = $api.byId('header');
+			var pos = $api.offset(header);
+			var index = 0;
+			//frame group index
+			if (type === "type") {
+				index = 1;
+			}
+			if (!searchActOpened) {
+				api.openFrameGroup({
+					name : 'searchAct',
+					scrollEnabled : false,
+					rect : {
+						x : 0,
+						y : pos.h+100,
+						w : 'auto',
+						h : 'auto'
+					},
+					index : index,
+					frames : [{
+						name : 'searchActBy-city',
+						url : '../html/searchActBy-city.html',
+						bounces : false,
+						opaque : false,
+						bgColor : 'rgba(51,51,51,0.6)',
+						vScrollBarEnabled : false
+					}, {
+						name : 'searchActBy-type',
+						url : '../html/searchActBy-type.html',
+						bounces : false,
+						opaque : false,
+						bgColor : 'rgba(51,51,51,0.6)',
+						vScrollBarEnabled : false
+					}]
+				}, function(ret, err) {
+				});
+				searchActOpened = true;
+			} else {
+				api.setFrameGroupIndex({
+					name : 'searchAct',
+					index : index
+					// ,scroll: true
+				});
+				api.setFrameGroupAttr({
+					name : 'searchAct',
+					hidden : false
+				});
+			}
+			//toggle active style
+			var curLi = el.parentNode;
+			//close frame group
+			if ($api.hasCls(curLi, 'active')) {
+				api.setFrameGroupAttr({
+					name : 'searchAct',
+					hidden : true
+				});
+			}
+			$api.toggleCls(curLi, 'active');
+			var lis = $api.domAll('#header .activity li');
+			var i = 0, len = lis.length;
+			for (i; i < len; i++) {
+				var thisLi = lis[i];
+				if (thisLi === curLi) {
+					continue;
+				} else {
+					if ($api.hasCls(thisLi, 'active')) {
+						$api.removeCls(thisLi, 'active');
+					}
+				}
+			}
+		}
+	</script>
+</html>

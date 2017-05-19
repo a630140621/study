@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>HTML5 WeblocalStorage</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<div style="border: 1px dotted #ccc;width: 320px;text-align: center;">
+		<label for="sitename">网站名(key)：</label>
+		<input type="text" id="sitename" name="sitename" class="text" />
+		<br>
+		<label for="siteurl">网址(value)：</label>
+		<input type="text" id="siteurl" name="siteurl" />
+		<br>
+		<input type="button" onclick="save()" value="新增记录">
+		
+		<hr>
+
+		<label for="search_site">搜索的网站名</label>
+		<input type="text" id="search_site" name="search_site">
+		<input type="button" onclick="find()" value="查找网站">
+
+		<p id="find_result"><br></p>
+
+		<hr>
+		<label for="del_name">要删除的网站名</label>
+		<input id="del_name" type="text" name="del_name">
+		<input type="button" onclick="del()" value="删除网站">
+	</div>
+	<br>
+
+	<div id="list"></div>
+
+	<script>
+		//检测是否支持Web 存储
+		if(typeof(Storage) !== "undefined")
+		{
+			//载入所有存储的localStorage的数据
+			loadAll();
+
+			//保存数据
+			function save()
+			{
+				var sitename = document.getElementById("sitename").value;
+				var siteurl = document.getElementById("siteurl").value;
+				localStorage.setItem(sitename,siteurl);
+				alert("添加网站成功");
+			}
+
+			//查找数据
+			function find()
+			{
+				var search_site = document.getElementById("search_site").value;
+				var sitename = localStorage.getItem(search_site);
+				document.getElementById("find_result").innerHTML = search_site + "的网址是" + sitename;
+			}
+
+			//删除数据
+			function del()
+			{
+				var del_name = document.getElementById("del_name").value;
+				localStorage.removeItem(del_name);
+				alert("删除网站成功");
+				location.reload();
+			}
+
+			//将储存的数据提取出来，并展示到界面上
+			function loadAll()
+			{
+				var list = document.getElementById("list");
+				if(localStorage.length > 0)
+				{
+					var result = "<table border='1'>";
+					result += "<tr><th>网站名</th><th>网址</th></tr>";
+					for (var i = 0; i < localStorage.length; i++) {
+						var sitename = localStorage.key(i);
+						var siteurl = localStorage.getItem(sitename);
+						result += "<tr><td>" + sitename + "</td><td>" + siteurl +"</td></tr>";
+					}
+					result += "</table>";
+					list.innerHTML = result;
+				}
+				else
+				{
+					list.innerHTML = "数据为空";
+				}
+			}
+		}
+		else
+		{
+			div.innerHTML = "您的浏览器不支持Web存储";
+		}
+	</script>
+</body>
+</html>

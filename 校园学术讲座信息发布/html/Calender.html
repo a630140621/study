@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/activity.css" />
+		<style>
+			header {
+				background-color: #f2f2f2;
+				border-bottom: 1px solid #f2f2f2;
+			}
+			.header {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+			}
+			.header a {
+				display: block;
+				padding: 20px;
+			}
+			.title {
+				line-height: 40px;
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				text-align: center;
+			}
+			.header .menu {
+				background-size: 30px;
+				background-repeat: no-repeat;
+				background-position: center;
+				background-image: url("../image/menu.png");
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="header" id="header">
+				<a class="menu" tapmode="" onclick="goback()"></a>
+				<div class="title" id="title"></div>
+				<a></a>
+			</div>
+		</header>
+	</body>
+	<script type="text/javascript" src="../script/api.js"></script>
+	<script type="text/javascript">
+	function goback(){
+	api.closeWin();
+	}
+		apiready = function() {
+			//固定状态栏
+			$api.fixStatusBar($api.dom('.header'));
+			// 滑动返回
+			api.addEventListener({
+				name : 'swiperight'
+			}, function(ret, err) {
+				api.closeWin();
+			});
+			//请求日历模块
+			var UICalendar = api.require('UICalendar');
+			var header = $api.byId('header');
+			var main = $api.byId('main');
+			var headerPos = $api.offset(header);
+			var mainPos = $api.byId(main);
+			UICalendar.open({
+				rect : {
+					x : 0,
+					y : headerPos.h,
+					w : api.frameWidth,
+					h : 340
+				},
+				styles : {
+					bg : 'rgba(0,0,0,0)',
+					week : {
+						weekdayColor : '#3b3b3b',
+						weekendColor : '#a8d400',
+						size : 12
+					},
+					date : {
+						color : '#3b3b3b',
+						selectedColor : '#fff',
+						selectedBg : '#a8d500',
+						size : 12
+					},
+					today : {
+						color : 'rgb(230,46,37)',
+						bg : ''
+					},
+					specialDate : {
+						color : '#a8d500',
+						bg : 'widget://image/a.png'
+					}
+				},
+				switchMode : 'horizontal',
+				fixedOn : api.frameName,
+				fixed : false
+			}, function(ret, err) {
+				var date = ret.year + '年' + ret.month + '月' + ret.day + '日';
+//				加载Calender-con页面
+				api.openFrame({
+					name : 'Calender-con',
+					url : 'Calender-con.html',
+					rect : {
+						x : 0,
+						y : 360,
+						w : 'auto',
+						h : 'auto'
+					},
+					pageParam : {
+						date : date
+					},
+					reload:true
+				});
+//alert(JSON.stringify(ret));
+				if (ret.eventType == 'switch') {
+					//插入年月
+					$api.byId('title').innerHTML = ret.year + '年' + ret.month + '月';
+				} else if (ret.eventType == 'normal' || 'special') {
+					//插入年月日
+					$api.byId('title').innerHTML = date;
+				}
+			});
+		};
+	</script>
+	<script type="text/javascript" src="../script/doT.min.js"></script>
+	<script type="text/javascript" src="../script/common.js"></script>
+</html>

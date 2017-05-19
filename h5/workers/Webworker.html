@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Web workers</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+	<p>计数：<output id="span1"></output></p>
+	<button type="button" onclick="startWorker()">开始工作</button>&nbsp;&nbsp;
+	<button type="button" onclick="stopWorker()">停止工作</button>
+
+	<script>
+		var w;
+
+		function startWorker()
+		{
+			if(typeof(Worker) !== "undefined")
+			{
+				if(typeof(w) == "undefined")
+				{
+					w = new Worker("demo_workers.js");
+				}
+				w.onmessage = function(event)
+				{
+					document.getElementById("span1").innerHTML = event.data;
+				}
+			}
+			else
+			{
+				document.getElementById("span1").innerHTML = "您的浏览器不支持Worker";
+			}
+		}
+
+		function stopWorker()
+		{
+			w.terminate();
+			w = undefined;
+		}
+	</script>
+</body>
+</html>

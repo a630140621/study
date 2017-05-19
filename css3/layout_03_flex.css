@@ -1,0 +1,40 @@
+*{box-sizing: border-box;}
+
+.parent
+{
+	display: flex;
+	flex-direction: column;
+	height: 600px;
+}
+
+.top,.left,.right,.bottom
+{	
+	border: 1px solid #ccc;
+}
+
+.top
+{
+	height: 100px;
+}
+
+.middle
+{
+	flex: 1;
+	display: flex;
+}
+
+.middle .left
+{
+	width: 200px;
+}
+
+.middle .right
+{
+	flex: 1;
+	overflow: auto;
+}
+
+.bottom
+{
+	height: 80px;
+}

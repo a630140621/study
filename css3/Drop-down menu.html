@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Drop-down menu</title>
+	<link rel="stylesheet" href="">
+	<style>
+	#dropdown
+	{
+		float: right;
+		margin-right: 150px;
+		margin-top: 50px;
+	}
+	.dropdown-content
+	{
+		display: none;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	}
+	#dropdown:hover .dropdown-content
+	{
+		display: block;
+	}
+	span
+	{
+		font-size: 24px;
+		line-height: 35px;
+		background-color: green;
+	}
+	a
+	{
+		text-decoration: none;
+		display: block;
+		color: green;
+		font-size: 18px;
+		padding-top: 10px;
+	}
+	</style>
+</head>
+<body>
+<div id="dropdown">
+<span>下拉菜单</span>
+<div class="dropdown-content">
+	<a href="#">下拉菜单1</a>
+	<a href="#">下拉菜单2</a>
+	<a href="#">下拉菜单3</a>
+</div>
+</div>
+</body>
+</html>

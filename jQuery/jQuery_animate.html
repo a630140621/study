@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<!-- 引用jQuery库 -->
+<script src="jquery-3.1.1.js"></script>
+<script>
+$(document).ready(function(){
+	$("#start").click(function(){
+	/*
+		$("div").animate({height:'360px',opacity:'0.3'},5000);
+		$("div").animate({width:'360px',opacity:'0.8'},5000);
+		$("div").animate({height:'120px',opacity:'0.5'},5000);
+		$("div").animate({width:'120px',opacity:'1'},5000);
+	*/
+	//Chaining方式
+		$("div").animate({height:'360px',opacity:'0.3'},5000)
+		.animate({width:'360px',opacity:'0.8'},5000)
+		.animate({height:'120px',opacity:'0.5'},5000)
+		.animate({width:'120px',opacity:'1'},5000);
+	});
+	$("#stop").click(function(){
+		$("div").stop(true);
+	});
+});
+</script>
+</head>
+
+<body>
+<button id="start" type="button">开始动画</button>&nbsp;&nbsp;
+<button id="stop" tyoe="button">暂停</button>
+<p>默认情况下，所有 HTML 元素的位置都是静态的，并且无法移动。
+如需对位置进行操作，记得首先把元素的 CSS position 属性设置为 
+relative、fixed 或 absolute。</p>
+<div style="background-color:red;width:120px;height:120px;position:absolute;"></div>
+</body>
+</html>

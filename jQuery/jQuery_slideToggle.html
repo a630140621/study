@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<!-- 引用jQuery库 -->
+<script src="jquery-3.1.1.js"></script>
+<script>
+$(document).ready(function(){
+	$(".flip").click(function(){
+		$(".panel").slideToggle("slow");
+	});
+});
+</script>
+<style type="text/css">
+div.panel,p.flip
+{
+margin:0px;
+padding:5px;
+text-align:center;
+background:#e5eecc;
+border:solid 1px #c3c3c3;
+}
+div.panel
+{
+height:88px;
+display:none;
+}
+</style>
+</head>
+
+<body>
+<div class="panel">
+<p>这是第一段</p>
+<p>这是第二段</p>
+</div>
+<p class="flip">请点击这里</p>
+</body>
+</html>

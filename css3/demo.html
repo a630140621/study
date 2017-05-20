@@ -6,15 +6,19 @@
 	<title>demo</title>
 	<link rel="stylesheet" href="">
 	<style type="text/css">
-	.parent{position:relative;} 
-	/*或者实用margin-left的负值为盒子宽度的一半也可以实现，不过这样就必须知道盒子的宽度，但兼容性好*/ 
-	.child{position:absolute;left:50%;transform:translate(-50%);}
+	  div { border: solid red;  max-width: 70ex; }
+	  h4  { float: left;  margin: 0; }
 	</style>
 </head>
 <body>
-<div class="parent">
-	<div class="child">居中部分</div>
-	<p>这是一个p元素，这一段很长，position就会遮住</p>
+
+<div>
+  <h4>HELLO!</h4>
+  This is some text. This is some text. This is some text.
+  This is some text. This is some text. This is some text.
+  This is some text. This is some text. This is some text.
+  This is some text. This is some text. This is some text.
 </div>
+
 </body>
 </html>

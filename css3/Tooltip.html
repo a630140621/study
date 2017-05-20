@@ -6,39 +6,36 @@
 	<title>Tooltip</title>
 	<link rel="stylesheet" href="">
 	<style>
-	.tooltip span:first-child
-	{
-		color: red;
-		background-color: green;
-		font-size: 22px;
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
 
-		/*定位*/
-		position: relative;
-	}
-	.tip-content
-	{
-		display: none;
-	}
-	.tooltip:hover .tip-content
-	{
-		display: block;
-		background-color: black;
-		color: white;
-		font-size: 20px;
-		text-align: center;
-		height: 30px;
-		border-radius: 6px;
-		/*定位*/
-		position: absolute;
-		z-index: 1;
-		left: 45px;
-	}
+.tooltip .tooltiptext {
+    display: none;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    /*圆角*/
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* 定位 */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    display: block;
+}
 	</style>
 </head>
+
 <body>
-<div class="tooltip">
-	<span>鼠标移动到这里</span>
-	<span class="tip-content">提示内容</span>
+<div class="tooltip">鼠标移动到这
+	<span class="tooltiptext">提示文本</span>
 </div>
 </body>
 </html>

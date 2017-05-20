@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<!-- 引用jQuery库 -->
+<script src="jquery-3.1.1.js"></script>
+<script>
+$(document).ready(function(){
+	$("button").click(function(){
+		$("#div1").load("jQuery_css.html",function(responseTxt,statusTxt,xhr){
+			if(statusTxt=="success")
+				alert("文件加载成功!")
+			else
+				alert("文件加载失败!" + xhr.status + ":" + xhr.statusText);
+		});
+	});
+});
+</script>
+
+<body>
+
+<div id="div1"><h2>使用jQuery AJAX来改变文本</h2></div>
+<button type="button">获得外部内容</button>
+
+</body>
+</html>

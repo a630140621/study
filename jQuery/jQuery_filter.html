@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<!-- 引用jQuery库 -->
+<script src="jquery-3.1.1.js"></script>
+<script>
+$(document).ready(function(){
+	//$(".intro").css("background-color","blue");//方法1
+	//filter方法
+	$("p").filter(".intro").css({"background-color":"red","font-size":"150%"});
+});
+</script>
+
+<body>
+<h1>欢迎来到我的主页</h1>
+<p>这是第一段</p>
+<p class="intro">这是第二段</p>
+<p class="intro">这是第三段</p>
+<p>这是第四段</p>
+</body>
+</html>

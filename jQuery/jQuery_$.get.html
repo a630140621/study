@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<!-- 引用jQuery库 -->
+<script src="jquery-3.1.1.js"></script>
+<script>
+$(document).ready(function(){
+	$("button").click(function(){
+		$.get("ceshi.txt",function(data,status){
+			alert("Data:" + data + "\nStatus:" + status);
+		});
+	});
+});
+</script>
+
+<body>
+
+<button type="button">向页面发送HTTP GET请求，然后获得返回的结果</button>
+
+</body>
+</html>

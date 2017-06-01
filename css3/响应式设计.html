@@ -21,7 +21,6 @@
 
 	/*调整为框盒子*/
 	*{-webkit-box-sizing: border-box;box-sizing: border-box;}
-
 	/*头部*/
 	.header
 	{
@@ -30,9 +29,12 @@
 		padding: 25px;
 	}
 	/*menu*/
+	.menu
+	{
+		color: #fff;
+	}
 	.menu ul
 	{
-		list-style-type: none;
 		margin: 0;
 		padding: 0;
 	}
@@ -42,7 +44,7 @@
 		margin: 10px;
 		padding: 15px;
 		text-decoration: none;
-		color: #fff;
+
 		cursor: pointer;
 	}
 	.menu li:hover
@@ -70,22 +72,7 @@
 		text-align: center;
 		padding: 15px;
 	}
-	/*空白*/
-	.offset-by-1{margin-left: 8.33%;}
-	.offset-by-2{margin-left: 16.66%;}
-	.offset-by-3{margin-left: 25%;}
-	.offset-by-4{margin-left: 8.33%;}
-	.offset-by-5{margin-left: 8.33%;}
-	.offset-by-6{margin-left: 8.33%;}
-	.offset-by-7{margin-left: 8.33%;}
-	.offset-by-8{margin-left: 8.33%;}
-	.offset-by-9{margin-left: 8.33%;}
-	
-	/*屏幕width小于600px*/
-	[class *= "col-"]
-	{
-		width: 100%;
-	}
+
 	/*屏幕width大于等于600px，小于768px*/
 	@media only screen and (min-width: 600px)
 	{
@@ -130,7 +117,7 @@
 </div>
 
 <div class="row">
-<div class="menu col-3 col-m-3">
+<div class="menu col-m-3 col-3">
 	<ul>
 		<li>The Flight</li>
 		<li>The City</li>
@@ -139,13 +126,12 @@
 	</ul>
 </div>
 
-<article class="col-5 col-m-9  offset-by-1">
+<article class="zhenwen col-m-9 col-6">
 <h1>The City</h1>
 <p>Chania is the capital of the Chania region on the island of Crete. The city can be divided in two parts, the old town and the modern city.</p>
 </article>
 
-<div class="col-3 col-m-12">
-<aside class="aside">
+<aside class="aside col-m-12 col-3">
 <h2>What?</h2>
 <p>Chania is a city on the island of Crete.</p>
 <h2>Where?</h2>
@@ -154,9 +140,8 @@
 <p>You can reach Chania airport from all over Europe.</p>
 </aside>
 </div>
-</div>
 
-<footer class="footer">
+<footer class="footer col-m-12">
 <p>Resize the browser window to see how the content respond to the resizing.</p>
 </footer>
 </body>

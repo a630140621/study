@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<!-- 引用jQuery库 -->
+<script src="jquery-3.1.1.js"></script>
+<script>
+$(document).ready(function(){
+	$("button").click(function(){
+		$("p").css({"background-color":"red","font-size":"24px"});
+	});
+});
+</script>
+
+<body>
+<h1>这是h1标题</h1>
+<p style="background-color:red;">段落1</p>
+<p style="background-color:green;">段落2</p>
+<p style="background-color:blue;font-size:36px;">段落3</p>
+<button type="button">改变css属性</button>
+</body>
+</html>

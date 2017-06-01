@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<script>
+function loadXMLDoc()
+{
+	//创建XMLHttpRequest对象
+	var xhr;
+	if(window.XMLHttpRequest)
+		xhr = new XMLHttpRequest();
+	else
+		xhr = new ActiveXObject("Microsoft.XMLHTTP");
+		
+	//编写onreadystatechange方法
+	xhr.onreadystatechange = function()
+	{
+		
+		if(xhr.readyState == 4 && xhr.status == 200)
+			document.getElementById("div1").innerHTML = xhr.responseText
+			
+		/*
+			alert("请求成功")
+		else
+			alert("请求失败");
+		*/
+		
+		//alert("恭喜成功了");
+	}
+	
+	//发送请求
+	xhr.open("GET","ceshi.txt",true);
+	xhr.send();
+}
+</script>
+</head>
+
+<body>
+<h1>AJAX</h1>
+<button type="button" onclick="loadXMLDoc()">请求数据</button>
+<div id="div1"></div>
+</body>
+</html>

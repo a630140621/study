@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<!-- 引用jQuery库 -->
+<script src="jquery-3.1.1.js"></script>
+<script>
+//删除class为class1的元素
+$(document).ready(function(){
+	$("button").click(function(){
+		//$(".class1").remove();//方法1
+		$("p").remove(".class1");//方法2
+	});
+});
+</script>
+</head>
+
+<body>
+<p class = "class1">class1</p>
+<p class = "class2">class2</p>
+<p class = "class1">class1</p>
+<button type="button">删除class为class1的元素</button>
+</body>
+</html>

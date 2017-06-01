@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+
+<script>
+function showCustomer(str)
+{
+	var xhr;
+	if(str == "")
+	{
+		document.getElementById("div1").innerHTML = "您未选择用户";
+		return;
+	}
+	
+	if(window.XMLHttpRequest)
+		xhr = new XMLHttpRequest();
+	else
+		xhr = new ActiveXObject("Microsoft.XMLHTTP");
+	
+	xhr.onreadystatechange = function()
+	{
+		if(xhr.readyState == 4 && xhr.status == 200)
+			document.getElementById("div1").innerHTML = xhr.responseText;
+	}
+	xhr.open("GET","url",true);
+	xhr.send();
+}
+</script>
+
+<body>
+<form action="" style="margin-top:15px;"> 
+<label>请选择一位客户：
+<select name="customer" onchange="showCustomer(this.value)">
+<option value="APPLE">Apple Computer, Inc.</option>
+<option value="BAIDU ">BAIDU, Inc</option>
+<option value="Canon">Canon USA, Inc.</option>
+<option value="Google">Google, Inc.</option>
+<option value="Nokia">Nokia Corporation</option>
+<option value="SONY">Sony Corporation of America</option>
+</select>
+</label>
+</form>
+<br/>
+<div id="div1" style="color:red;">内容在这里输出</div>
+
+</body>
+</html>

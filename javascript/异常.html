@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>异常</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+<p>请输入一个5-10之间的数字：</p>
+<input id="num" type="text" />
+<button type="button" onclick="test()">测试输入</button>
+<p id="message"></p>
+
+<script>
+var num = document.getElementById("num");
+var message = document.getElementById("message");
+
+function test()
+{
+	con = num.value;
+	try
+	{
+		if (con == "") throw "值为空";
+		if (isNaN(con)) throw "请输入数字";
+		con = Number(con);
+		if (con < 5) throw "值小于5";
+		if (con > 10) throw "值大于10";
+		if (con >= 5 && con < 10) throw "YES";
+	}
+	catch(err)
+	{
+		message.innerHTML = err;
+	}
+}
+</script>
+</body>
+</html>

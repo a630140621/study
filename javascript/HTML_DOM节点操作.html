@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>HTML_DOM节点操作</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+
+<button type="button" onclick="add()">新增一个p节点</button>
+<button type="button" onclick="del()">删除一个p节点</button>
+<button type="button">替换一个p节点</button>
+
+<div id="div1">
+	<p>这是一个段落</p>
+	<p>这是另一个段落</p>
+</div>
+
+<script>
+	var div1 = document.getElementById("div1");
+	var but = document.getElementsByTagName("button");
+
+	// 新增
+	function add(){
+		var para = document.createElement("p");
+		var node = document.createTextNode("这是一个新增的段落");
+		para.appendChild(node);
+
+		div1.appendChild(para);
+	}
+
+	// 删除
+	function del(){
+		var p = document.getElementsByTagName("p");
+		div1.removeChild(p[0]);
+	}
+
+	// 替换,使用事件监听
+	function rep(){
+		var p = document.getElementsByTagName("p");
+		
+		var para = document.createElement("p");
+		var node = document.createTextNode("这是替换后的段落");
+		para.appendChild(node);
+
+		div1.replaceChild(para,p[1]);
+	}
+
+	but[2].addEventListener("click",rep);
+</script>
+</body>
+</html>

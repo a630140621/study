@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>表单验证1</title>
+	<link rel="stylesheet" href="">
+	<script>
+		function test(){
+			var x = document.forms["myForm"]["fname"].value;
+			if (x != ""){
+				alert("您输入的信息为："+x);
+			}else{
+				alert("请输入");
+			}
+		}
+	</script>
+</head>
+<body>
+<form name="myForm" action="#" method="post" accept-charset="utf-8" onsubmit="test()">
+	名字：<input type="text" name="fname">
+	<input type="submit" value="提交">
+</form>
+</body>
+</html>

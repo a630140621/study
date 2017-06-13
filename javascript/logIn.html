@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>logIn</title>
+	<link rel="stylesheet" href="">
+<!-- 	<script>
+	windiow.document.write("<p>这是一个新的浏览器窗口</p>");
+	window.document.write(window.name + "111<br/>");
+	window.document.write("<button onclick='logIn.close();'>点击关闭此窗口</button>")
+	</script> -->
+	<script>
+		function closeM(){
+			window.close();
+		}
+
+		// var message = document.getElementById("message");
+		// message.innerHTML = document.URL + document.referrer;
+
+		document.write(document.URL + "<br />" + document.referrer); 
+		document.write(location.port);
+	</script>
+</head>
+<body>
+	<p>这是一个新的浏览器窗口</p>
+	<button type="button" onclick="closeM();">点击关闭此窗口</button>
+	<!-- <p id="message"></p> -->
+</body>
+</html>

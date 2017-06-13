@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>demo</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+<p>这是一个demo</p>
+<button id="demo">点击</button>
+<p id="message"></p>
+
+<script>
+	var message = document.getElementById("message");
+	var but = document.getElementById("demo");
+
+	function test(x,y){
+		message.innerHTML = x*y;
+	}
+
+	but.addEventListener("click",function(){test(3,6)});
+</script>
+</body>
+</html>

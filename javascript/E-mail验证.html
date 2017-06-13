@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>E-mail验证</title>
+	<link rel="stylesheet" href="">
+	<script>
+	function test(){
+		var email = document.forms["myForm"]["email"].value;
+		var patt = /\w+@\w+\.\w+/;
+		var message = document.getElementById("message");
+		if (email.match(patt) == null){
+			message.innerHTML = "请输入正确的邮箱地址";
+			return false;
+		}
+	}
+	</script>
+</head>
+<body>
+<form action="#" method="post" accept-charset="utf-8" onsubmit="return test()" name="myForm">
+	E-mail：<input type="text" name="email">
+	<input type="submit" name="submit">
+	<p id="message"></p>
+</form>
+</body>
+</html>

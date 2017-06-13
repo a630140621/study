@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>约束验证DOM</title>
+	<link rel="stylesheet" href="">
+	<script>
+	function test(){
+		var num = document.getElementsByName("num");
+		var message = document.getElementById("message");
+		// console.log(num[0].value);
+		if (num[0].checkValidity()) {
+			message.innerHTML = "输入正确";
+		}else{
+			message.innerHTML = num[0].validationMessage;
+		}
+	}
+	</script>
+</head>
+<body>
+<p>输入数字并点击验证按钮：</p>
+<input type="number" name="num" min="100" max="300" required>
+<button type="button" onclick="test()">验证</button><br />
+<p>如果输入的数字小于100或大于300，会提示错误信息。</p>
+<p id="message"></p>
+</body>
+</html>

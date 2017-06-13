@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>验证约束DOM2</title>
+	<link rel="stylesheet" href="">
+	<script>
+	function test(){
+		var num = document.getElementsByName("number");
+		var message = document.getElementById("message");
+		if (num[0].validity.rangeUnderflow){
+			txt = "您输入的值太小了";
+		}else{
+			txt = "";
+		}
+		message.innerHTML = txt;
+	}
+	</script>
+</head>
+<body>
+<p>输入数字并点击验证按钮：</p>
+<input type="number" name="number" min="100" required="required">
+<button type="button" onclick="test()">验证</button><br />
+<p>如果输入的数字小于100，则显示错误信息</p>
+<p id="message"></p>
+</body>
+</html>

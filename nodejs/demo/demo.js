@@ -4,17 +4,31 @@
 'use strict'
 
 var fs = require('fs');
+var http = require('http');
+var url =require('url');
 
-fs.readFile('../input.txt',function (err,data) {
-    if (err){
-        return console.log(err);
-    }else{
-        fs.writeFile('../output.txt',data,function (err) {
-            if (err) return console.log(err.toString());
+http.createServer(function (request,response) {
+    if (request.url !== '/favicon.ico'){
+        // console.log(request.url);
+        //
+        // fs.readFile('./demo.html','utf-8',function (err,data) {
+        //     if (err){
+        //         console.log(err.toString());
+        //     }
+        //
+        //     response.writeHead(200,{'Content-Type':'text/html,utf-8'});
+        //     response.write(data);
+        //     response.end();
+        // });
 
-            console.log('写入完毕');
-        });
+        var pathname = url.parse(request.url).pathname;
+
+        console.log('Request for ' + pathname + ' received.');
+
+        response.writeHead(200,{'Content-Type':'text/plain;charset=utf-8'});
+        response.write('');
+        response.end();
     }
-});
+}).listen(9412);
 
-console.log('程序执行结束');
+console.log('server running at http://127.0.0.1:9412/');

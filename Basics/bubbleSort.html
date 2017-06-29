@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>bubbleSort</title>
+	<link rel="stylesheet" href="">
+</head>
+<body>
+请输入一组数字，使用" "分隔：
+<input id="num" type="text" name="" /><br />
+<button type="button" onclick="sort()">点击正向排序</button>
+<p id="message"></p>
+<p id="sort"></p>
+<script>
+var p = document.getElementById("message");
+
+function sort(){
+// 获取输入框中的数字，并保存在数组中
+var num = document.getElementById("num").value.split(" ");
+// console.log(num);
+
+// 对数组进行正向排序
+num.sort(function(a,b){return a-b});
+
+p.innerHTML = num;
+}
+
+
+
+// 基础排序
+var sort = document.getElementById("sort");
+var a = [2,32,11,10,6,22];
+function bubble(){
+	var tmp;
+	for (var i = 0; i < a.length-1; i++) {
+		for (var j =0; j < a.length-i-1; j++){
+			if (a[j] > a[j+1]) {
+				tmp = a[j];
+				a[j] = a[j+1];
+				a[j+1] = tmp;
+			}
+		}
+	}
+	sort.innerHTML = a;
+}
+bubble();
+</script>
+</body>
+</html>

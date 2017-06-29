@@ -1,16 +1,20 @@
 /**
  * Created by wxy on 2017/6/19.
  */
-var http = require('http');
+'use strict'
 
-http.createServer(function (request,response) {
-    if (request.url !== '/favicon.ico') {
-        console.log('Request:' + request.url);
+var fs = require('fs');
 
-        response.writeHead(200, {'Content-Type':'text/plain;charset=utf-8'});
-        response.write('输出一些内容');
-        response.end('end也能输出内容');
+fs.readFile('../input.txt',function (err,data) {
+    if (err){
+        return console.log(err);
+    }else{
+        fs.writeFile('../output.txt',data,function (err) {
+            if (err) return console.log(err.toString());
+
+            console.log('写入完毕');
+        });
     }
-}).listen(9412);
+});
 
-console.log('Server running at http://127.0.0.1:9412/');
+console.log('程序执行结束');

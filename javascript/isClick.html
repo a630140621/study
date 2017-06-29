@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>whichClick</title>
+	<link rel="stylesheet" href="">
+	<style>
+		div{
+			width: 240px;
+			height: 180px;
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+
+<p>鼠标点击下面div，显示是左击还是右击</p>
+
+<div onmousedown="whichClick(event)"></div>
+<p id="message">1</p>
+
+<script>
+	var message = document.getElementById("message");
+	// chrome
+	function whichClick(event){
+		if (event.button == 0) {
+			message.innerHTML = "左击";
+		}else if (event.button == 1){
+			message.innerHTML = "滚轮键";
+		}else{
+			message.innerHTML = "右击";
+		}
+		// alert("你按下了：" + event.button);
+	}
+</script>
+
+</body>
+</html>

@@ -10,10 +10,13 @@ module.exports = {
         fs.readFile('../html/register.html','utf-8',function (err,data) {
             if (err){
                 console.log(err);
+                response.writeHead(404,{'Content-Type':'text/plain'});
+                response.write('404');
+                response.end();
             }else {
-                response.writeHead(200,{'Content-Type':'text/plain'});
+                response.writeHead(200,{'Content-Type':'text/html'});
                 response.write(data);
-                response.end('');
+                response.end();
             }
         });
     },

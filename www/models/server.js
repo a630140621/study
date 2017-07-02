@@ -8,7 +8,7 @@ var url = require('url');
 var path = require('path');
 var router = require('./router');
 
-var port = 9412;
+var port = 80;
 http.createServer(function (request,response) {
     if (request.url !== '/favicon.ico'){
         var pathname = '',
@@ -21,14 +21,14 @@ http.createServer(function (request,response) {
         basename = path.basename(pathname);
         console.log(basename);
 
-        // try{
+        try{
             // 使用路由
             router[basename](request,response);
-        // }catch (err){
-        //     response.writeHead(404,{'Content-type':'text/plain;charset=utf-8'});
-        //     response.write('404');
-        //     response.end();
-        // }
+        }catch (err){
+            response.writeHead(404,{'Content-type':'text/plain;charset=utf-8'});
+            response.write('404');
+            response.end();
+        }
     }
 }).listen(port);
 

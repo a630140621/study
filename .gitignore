@@ -2,4 +2,4 @@
 .idea/
 
 #npm
-npm/
+#node_modules/

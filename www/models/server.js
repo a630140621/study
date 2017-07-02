@@ -5,22 +5,30 @@
 
 var http = require('http');
 var url = require('url');
+var path = require('path');
 var router = require('./router');
 
 var port = 9412;
 http.createServer(function (request,response) {
     if (request.url !== '/favicon.ico'){
-        var pathname = '';
+        var pathname = '',
+            basename = '';
 
         // 获得url的pathname
         pathname = url.parse(request.url).pathname;
 
-        // 去掉路径中的'/'
-        pathname = pathname.replace(/\//,'');
-        console.log(pathname);
+        // 获得basename
+        basename = path.basename(pathname);
+        console.log(basename);
 
-        // 使用路由
-        router[pathname](request,response);
+        // try{
+            // 使用路由
+            router[basename](request,response);
+        // }catch (err){
+        //     response.writeHead(404,{'Content-type':'text/plain;charset=utf-8'});
+        //     response.write('404');
+        //     response.end();
+        // }
     }
 }).listen(port);
 

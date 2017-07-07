@@ -8,6 +8,7 @@ var url = require('url');
 var querystring = require('querystring');
 var mysql_user = require('./mysql_user');
 var mysql = require('mysql');
+var events = require('events');
 
 // 连接到数据库user
 var connection = mysql.createConnection({
@@ -16,6 +17,8 @@ var connection = mysql.createConnection({
     password : '',
     database : 'user'
 });
+
+var emitter = new events.EventEmitter();
 
 module.exports = {
     register : function (requset,response) {
@@ -77,9 +80,18 @@ module.exports = {
                 throw err;
             }else{
                 if (result.length == 0){
-                    response.write('用户不存在，请创建用户<br>');
-                    response.write('<a href = "http://127.0.0.1:9412/register">点击此处创建新用户</a>');
-                    response.end();
+                    // response.write('用户不存在，请创建用户<br>');
+                    // response.write('<a href = "http://127.0.0.1:9412/register">点击此处创建新用户</a>');
+                    // response.end();
+
+                    // 使用事件
+                    emitter.once('success',function (response) {
+                        response.write('用户不存在，请创建用户<br>');
+                        response.write('<a href = "http://127.0.0.1:9412/register">点击此处创建新用户</a>');
+                        response.end();
+                    });
+                    // 触发事件
+                    emitter.emit('success',response);
                 }else{
                     // 验证用户名密码是否匹配
                     let sql_password = 'SELECT * FROM user WHERE username =' + "'" + query['username'] + "'"

@@ -36,7 +36,7 @@ function select(sql) {
             console.log(err.toString());
             throw err;
         }else{
-            console.log('select success!')
+            console.log('select success!');
             return result;
         }
     });
@@ -47,5 +47,5 @@ function select(sql) {
 module.exports = {
     insert,
     select
-}
+};
 

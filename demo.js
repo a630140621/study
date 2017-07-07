@@ -3,4 +3,10 @@
  */
 'use strict';
 
-if(123 == '123abc'){console.log('相等')}else{console.log('不相等')}
+var promise = new Promise(function (resolve,reject) {
+    console.log('1');
+    setTimeout(()=>{console.log('1');resolve();},1000);
+    throw new Error('err');
+});
+
+promise.then(setTimeout(()=>{console.log('2');},1000)).then(()=>console.log('3')).catch((err)=>console.log('err'));

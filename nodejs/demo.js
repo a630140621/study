@@ -1,23 +1,28 @@
 /**
  * Created by love&crazy on 2017/6/14.
  */
-var http = require("http");
-var url = require("url");
+"use strict";
 
-function start(route) {
-    function onRequest(request, response) {
-        var pathname = url.parse(request.url).pathname;
-        console.log("Request for " + pathname + " received.");
+var http = require('http');
+var fs = require('fs');
+var destinationFile, fileSize, uploadedBytes;
 
-        route(pathname);
+http.createServer(function (request, response) {
+    response.writeHead(200);
+    destinationFile = fs.createWriteStream("destination.md");
+    request.pipe(destinationFile);
+    fileSize = request.headers['content-length'];
+    uploadedBytes = 0;
 
-        response.writeHead(200, {"Content-Type": "text/plain"});
-        response.write("Hello World");
-        response.end();
-    }
+    request.on('data', function (d) {
+        uploadedBytes += d.length;
+        var p = (uploadedBytes / fileSize) * 100;
+        response.write("Uploading " + parseInt(p, 0) + " %\n");
+    });
 
-    http.createServer(onRequest).listen(8888);
-    console.log("Server has started.");
-}
-
-exports.start = start;
+    request.on('end', function () {
+        response.end("File Upload Complete");
+    });
+}).listen(9412, function () {
+    console.log("server started");
+});

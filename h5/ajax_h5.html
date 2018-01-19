@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax</title>
+</head>
+<body>
+<h1><button onclick="load_text('./test.txt')">click get text</button></h1>
+<div id="text"></div>
+</body>
+
+<script>
+    function load_text(url) {
+        let xmlhttp = new XMLHttpRequest();
+
+        xmlhttp.onreadystatechange = ()=>{
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200){
+                document.getElementById("text").innerHTML = xmlhttp.responseText;
+            }
+        }
+
+        xmlhttp.open("GET",url,true);
+        xmlhttp.send();
+    }
+</script>
+</html>

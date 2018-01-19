@@ -3,26 +3,20 @@
  */
 "use strict";
 
-var http = require('http');
-var fs = require('fs');
-var destinationFile, fileSize, uploadedBytes;
+let book = {
+	name:"javascript",
+	title:"title",
+	age:21,
+	toJSON:function () {
+		return 'do not';
+	}
+}
 
-http.createServer(function (request, response) {
-    response.writeHead(200);
-    destinationFile = fs.createWriteStream("destination.md");
-    request.pipe(destinationFile);
-    fileSize = request.headers['content-length'];
-    uploadedBytes = 0;
+let book2 = {
+	name:'java',
+	book:book
+};
 
-    request.on('data', function (d) {
-        uploadedBytes += d.length;
-        var p = (uploadedBytes / fileSize) * 100;
-        response.write("Uploading " + parseInt(p, 0) + " %\n");
-    });
+// console.log(JSON.stringify(book,null,4));
 
-    request.on('end', function () {
-        response.end("File Upload Complete");
-    });
-}).listen(9412, function () {
-    console.log("server started");
-});
+console.log(JSON.stringify(book2,null,4))

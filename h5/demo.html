@@ -6,13 +6,72 @@
 </head>
 <body>
 
-<p id="p1">demo</p>
+<p id="p1" title="demo" data-img="some text">demo<span>span</span></p>
+
+<!-- <div id="pos" onmousemove="fn(event,this)">some text</div> -->
+
+<textarea name="" id="moveto" cols="30" rows="10">放在这里</textarea>
+
+<div id="move" style="height:150px;width: 100px;background-color: red;" draggable="true"></div>
+
+<script type="text/javascript">
+	let move = document.getElementById('move');
+	let moveto = document.getElementById('moveto');
+
+	move.ondragstart = function(event){
+		console.log('dragstart');
+	}
+
+	move.ondrag = function(event){
+		console.log('ondrag');
+	}
+
+	move.ondragend = function(event){
+		console.log('ondragend');
+	}
+</script>
+	
 <script>
-    let p = document.getElementById('p1');
-    if (p == undefined){
-        console.log('true');
-    }
-    console.log(p.innerHTML);
+    // document.getElementById('text').addEventListener('textInput',()=>{
+    //     console.log(event.data)
+    // })
+
+    // document.getElementsByTagName('body')[0].addEventListener('contextmenu',(event)=>{
+    //     event.preventDefault();
+    // },false)
+
+    // document.getElementById('text').addEventListener('focus',(event)=>{
+    //     console.log(event)
+    // },false)
+
+    // document.getElementsByTagName('body')[0].addEventListener('mousewheel',(event)=>{
+    //     console.log(event)
+    // })
+
+    // let p = document.getElementById('p1');
+    // if (p == undefined){
+    //     console.log('true');
+    // }
+    // console.log(p.innerHTML)
+
+    // 使用DOM节点操作
+    // let textNode = document.createTextNode('<strong>hello</strong> world!');
+    // p.appendChild(textNode);
+
+    // 只允许输入数字
+    // document.getElementById('text').addEventListener('keydown',(event)=>{
+    // 	if (!/\d/.test(event.key) && event.key != 'Backspace' && !event.ctrlKey) {
+    // 		event.preventDefault();
+    // 	}
+    // },false)
+
+    // document.getElementById('text').addEventListener('copy',(event)=>{
+    // 	console.log(event)
+    // },false)
+
+    // document.getElementById('text').addEventListener('focus',(event)=>{
+    // 	document.getElementById('text').select();
+    // },false)
 </script>
 </body>
 </html>

@@ -1,0 +1,32 @@
+// mongodb 无限生长树的保存结构
+
+{
+    "comment_id": 1,
+    "deep_2_0": {
+        "reply_person_user_id": 3,
+        "be_reply_person_user_id": 6,
+        "content": "谢谢",
+        "create_time": "time"
+    },
+    "deep_2_1": {
+        "reply_person_user_id": 6,
+        "be_reply_person_user_id": 3,
+        "content": "客气了",
+        "create_time": "time"
+    },
+    "deep_2_2": {
+        "reply_person_user_id": 3,
+        "be_reply_person_user_id": 6,
+        "content": "加个好友",
+        "create_time": "time",
+        "deep_3_0": {
+            "reply_person_user_id": 9,
+            "be_reply_person_user_id": 6,
+            "content": "也加我个好友",
+            "create_time": "time"
+        }
+    }
+}
+
+// 允许删除评论吗?
+// 问题: deep_2_2: 有两层回复,此时如果上一层被删除了下面的信息怎么办

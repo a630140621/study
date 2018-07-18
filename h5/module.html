@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模态</title>
+</head>
+<body>
+    <form action="" method="get" name="module" onsubmit="return queren()">
+        输入一些内容：<input type="text" name="content" required><br>
+        <input type="submit" name="submit">
+    </form>
+
+    <div id="module" style="background-color: #666666;width: 200px;text-align: center;display: none">
+        <p>some text</p>
+        <button onclick="yes()">确认</button>&nbsp;&nbsp;<button onclick="no()">取消</button>
+    </div>
+
+    <script>
+        function confirm() {
+            let form = document.forms['module'];
+            let content = form['content'].value;
+            let module = document.getElementById('module');
+
+            module.style.display = 'block';
+
+//            console.log(content);
+        }
+        document.forms['module']['submit'].addEventListener('click',confirm);
+
+        let flag = false;
+//        yes
+        function yes() {
+            flag = true;
+            return flag;
+        }
+//        no
+        function no() {
+            flag = false;
+            return flag;
+        }
+//        确认
+        function queren() {
+//            let queren = document.getElementById('queren');
+//            let quxiao = document.getElementById('quxiao');
+
+            if (flag){
+                return true;
+            }else {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>

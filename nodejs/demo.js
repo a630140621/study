@@ -1,23 +1,8 @@
 /**
  * Created by love&crazy on 2017/6/14.
  */
-var http = require("http");
-var url = require("url");
+'use strict';
 
-function start(route) {
-    function onRequest(request, response) {
-        var pathname = url.parse(request.url).pathname;
-        console.log("Request for " + pathname + " received.");
+const crypto = require('crypto');
 
-        route(pathname);
-
-        response.writeHead(200, {"Content-Type": "text/plain"});
-        response.write("Hello World");
-        response.end();
-    }
-
-    http.createServer(onRequest).listen(8888);
-    console.log("Server has started.");
-}
-
-exports.start = start;
+console.log(crypto.createHash('md5').update('http://finance.youth.cn/finance_gdxw/201707/t20170728_10396684.htm').digest('hex'));

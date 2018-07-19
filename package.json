@@ -73,7 +73,8 @@
     "validate-npm-package-name": "^2.2.2",
     "which": "^1.2.11",
     "wrappy": "^1.0.2",
-    "write-file-atomic": "^1.2.0"
+    "write-file-atomic": "^1.2.0",
+    "xlsx": "^0.13.2"
   },
   "devDependencies": {},
   "scripts": {

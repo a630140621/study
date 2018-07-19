@@ -3,3 +3,4 @@
  */
 'use strict';
 
+if(123 == '123abc'){console.log('相等')}else{console.log('不相等')}

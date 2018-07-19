@@ -3,12 +3,13 @@ const assert = require('assert');
 const fs = require('fs');
 
 
+
 /**
  * 
- * @param {Number} lineStart 第一行有数据的行数
- * @param {Number} lineEnd 最后一行的行数
+ * @param {*} file 输入文件 .xlsx
+ * @param {*} outputFile  输出文件
  */
-async function main(file, lineStart, lineEnd) {
+async function main(file, outputFile) {
     // 打开 excel
     const workbook = await xlsx.readFile(file);
 
@@ -21,7 +22,10 @@ async function main(file, lineStart, lineEnd) {
     // let lineEnd = 105; // 最后一行的行数
 
     // lineStart = lineStart - 1;
-    lineEnd = lineEnd + 1;
+    // lineEnd = lineEnd + 1;
+    lineStart = 9;
+    lineEnd = Number(/AE(\d+)/.exec(worksheet['!ref'])[1]) + 1;
+    console.log('lineEnd = ' + (lineEnd - 1));
 
     // 获取所有的数据, 平行数组
     let zeroPointThreeum = [],
@@ -44,17 +48,18 @@ async function main(file, lineStart, lineEnd) {
     // 如果长度不一样, 可能有错误
     console.log(zeroPointThreeum.length, zeroPointFiveum.length, onePointum.length, twoPointum.length, fivePointum.length, tenPointum.length, control.length);
 
-    genreCSVByNumber(zeroPointThreeum, zeroPointFiveum, onePointum, twoPointum, fivePointum, tenPointum, control);
+    genreCSVByNumber(zeroPointThreeum, zeroPointFiveum, onePointum, twoPointum, fivePointum, tenPointum, control, outputFile);
 }
 
 // 以实验次数为分界, 生成 .csv 文件
-function genreCSVByNumber(zeroPointThreeumAll, zeroPointFiveumAll, onePointumAll, twoPointumAll, fivePointumAll, tenPointumAll, controlAll) {
+function genreCSVByNumber(zeroPointThreeumAll, zeroPointFiveumAll, onePointumAll, twoPointumAll, fivePointumAll, tenPointumAll, controlAll, outputFile) {
     let node = [];
     for (let i = 0; i < controlAll.length; i++) {
         if (controlAll[i] == 1) node.push(i);
     }
+    node.push(controlAll.length);
 
-    console.log('node.length = ' + node.length)
+    console.log('node.length = ' + node.length);
     for (let i = 0; i < node.length - 1; i++) {
         let zeroPointThreeum = getGroupResult(zeroPointThreeumAll.slice(node[i], node[i + 1]));
         let zeroPointFiveum = getGroupResult(zeroPointFiveumAll.slice(node[i], node[i + 1]));
@@ -64,7 +69,7 @@ function genreCSVByNumber(zeroPointThreeumAll, zeroPointFiveumAll, onePointumAll
         let tenPointum = getGroupResult(tenPointumAll.slice(node[i], node[i + 1]));
 
         console.log(zeroPointThreeum.length, zeroPointFiveum.length, onePointum.length, twoPointum.length, fivePointum.length, tenPointum.length);
-        writeCSV(i, zeroPointThreeum, zeroPointFiveum, onePointum, twoPointum, fivePointum, tenPointum);
+        writeCSV(i + 1, zeroPointThreeum, zeroPointFiveum, onePointum, twoPointum, fivePointum, tenPointum, outputFile);
     }
 }
 
@@ -122,19 +127,26 @@ function square(x) {
     return x ** 2;
 };　　
 
-function writeCSV(index, zeroPointThreeum, zeroPointFiveum, onePointum, twoPointum, fivePointum, tenPointum) {
+function writeCSV(index, zeroPointThreeum, zeroPointFiveum, onePointum, twoPointum, fivePointum, tenPointum, outputFile) {
     let len = zeroPointThreeum.length;
-    let data = '0.3um, 0.5um, 1.0um, 2.0um, 5.0um, 10.0um \n';
+    let data = `${index}\n 0.3um, 0.5um, 1.0um, 2.0um, 5.0um, 10.0um \n`;
     for (let i = 0; i < len; i++) {
         data += `${zeroPointThreeum[i]}, ${zeroPointFiveum[i]}, ${onePointum[i]}, ${twoPointum[i]}, ${fivePointum[i]}, ${tenPointum[i]} \n`;
     }
 
-    fs.writeFileSync(`./handle-data/0710_${index}.csv`, data);
+    fs.appendFileSync(`./handle-data/${outputFile}`, data);
 }
 
 
+let path = ['F:\\work\\projects\\study\\handle-data\\实测数据2018 (1)\\2018-0714-实测数据\\2018-0714-颗粒物数据.xlsx',
+'F:\\work\\projects\\study\\handle-data\\实测数据2018 (1)\\2018-0715-实测数据\\2018-0715-颗粒物数据.xlsx',
+'F:\\work\\projects\\study\\handle-data\\实测数据2018 (1)\\2018-0716-实测数据\\2018-0716-颗粒物数据.xlsx',
+'F:\\work\\projects\\study\\handle-data\\实测数据2018 (1)\\2018-0717-实测数据\\2018-0717-颗粒物数据.xlsx',
+'F:\\work\\projects\\study\\handle-data\\实测数据2018 (1)\\陈雯君-2018-0703-实测数据\\颗粒物数据\\2018-0703-原始数据.xlsx',
+'F:\\work\\projects\\study\\handle-data\\实测数据2018 (1)\\陈雯君-2018-0712-实测数据\\2018-0712-颗粒物数据.xlsx'
+]
 
-main('D:\\实测数据2018 (1)\\2018-0710-实测数据\\2018-0710-颗粒物数据.xlsx', 9, 3094).then(result => {
+main(path[5], '0712.csv').then(result => {
     console.log(result);
 }).catch(error => {
     console.log(error);

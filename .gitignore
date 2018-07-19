@@ -4,6 +4,11 @@
 #npm
 node_modules/
 
+<<<<<<< HEAD
 .vs/
 .vscode/
 __pycahce__/
+=======
+# python
+__pycache__
+>>>>>>> 848dbd2c6d048f37421c4ac8acf2965b13efc411

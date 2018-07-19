@@ -20,22 +20,41 @@ def main():
     number.append(length)
     assert(len(number) == 19)
 
-    print(number)
+    # print(number)
 
     # 获取每一个次数的 DataFrame 并拼接需要保存的数据
-    data = ''
     for n in range(len(number) - 1):
-        data += str(n) + '\n' + '0.3um, 0.5um, 1.9um, 2.0um, 5.0um, 10.0um\n'
         # 行切分
         _df = df[number[n]: number[n + 1]]
-        # _mean = _df.mean() # 每一列的 平均数
-        # _max = _df.max() # 最大值
-        # _min = _df.min() # 最小值
-        _std = _df.std() # 标准差
-        # _median = _df.median() # 中位数
+        # 剔除异常值
+        excluding_outliers_df = excluding_outliers(_df)
+        # 保存
+        save(n + 1, excluding_outliers_df)
 
-        _df[] = np.nan
 
+def excluding_outliers(df):
+    mean = df.mean()
+    std = df.std()
+
+    return df[(df - mean).abs() <= 3 * std]
+
+
+def save(n, df):
+    data = str(n) + '\n'
+    _mean = df.mean().values  # 每一列的 平均数 list
+    _max = df.max().values  # 最大值 list
+    _min = df.min().values  # 最小值 list
+    _std = df.std().values  # 标准差 list
+    _median = df.median().values  # 中位数 list
+
+    data += df.to_csv()
+    data += 'mean, ' + ', '.join(str(x) for x in _mean) + '\n'
+    data += 'max, ' + ','.join(str(x) for x in _max) + '\n'
+    data += 'min, ' + ','.join(str(x) for x in _min) + '\n'
+    data += 'std, ' + ','.join(str(x) for x in _std) + '\n'
+    data += 'median, '+ ','.join(str(x) for x in _median) + '\n'
+    with open('handle-data/output_0710.csv', 'a') as f:
+        f.write(data)
 
 
 main()

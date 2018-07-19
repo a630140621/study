@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "handle-data -py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/handle-data/handle-data.py",
+            "console": "integratedTerminal"
+        },
+        {
             "type": "node",
             "request": "launch",
             "name": "handle-data",

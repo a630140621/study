@@ -5,6 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "node",
+            "request": "launch",
+            "name": "handle-data",
+            "program": "${workspaceFolder}/handle-data/handle-data.js"
+        },
+        {
             "name": "Python Experimental: Current File (Integrated Terminal)",
             "type": "pythonExperimental",
             "request": "launch",

@@ -2,13 +2,11 @@ import pandas as pd
 import numpy as np
 
 
-'''
-file: 输入文件
-output: 输出文件
-'''
-
-
 def main(file, output):
+    '''
+    file: 输入文件
+    output: 输出文件
+    '''
     data_all = pd.read_csv(file)
     # print(data_all['0.3um'])
     df = pd.DataFrame([data_all['0.3um'], data_all['0.5um'], data_all['1.0um'],
@@ -94,7 +92,8 @@ files = [
     ('handle-data/0716.csv', 'handle-data/output_0716'),
     ('handle-data/0717.csv', 'handle-data/output_0717'),
     ('handle-data/0718.csv', 'handle-data/output_0718'),
-    ('handle-data/0719.csv', 'handle-data/output_0719')
+    ('handle-data/0719.csv', 'handle-data/output_0719'),
+    ('handle-data/0720.csv', 'handle-data/output_0720')
 ]
 
 # 执行
